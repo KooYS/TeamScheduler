@@ -1,0 +1,16 @@
+{% extends 'html/base.html' %}
+
+{% block content %}
+
+	<form method="POST" class="post-form">{% csrf_token %}
+	        <label for="id_teamcode">Teamcode:</label>
+        	<input type="text" name="teamcode" maxlength="20" required="" id="id_teamcode">
+        	<label for="id_schedule_data">Schedule data:</label>
+        	<input type="text" name="schedule_data" maxlength="100" required="" id="id_schedule_data">
+	        <button type="submit" class="save btn btn-default">Save</button>
+	</form>
+
+    <div class="user">
+        <h2>{{ test }}</h2>
+    </div>
+{% endblock %}
