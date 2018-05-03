@@ -6,17 +6,18 @@
     <title>koo</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="{% static 'css/schedule.css' %}">
+    <link rel="stylesheet" href="{% static 'css/container.table.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
     <div class="page-header">
-    <h1><a href="/">koo</a></h1>
+    <h1><a href="/">Time Table</a></h1>
     </div>
     
-   <div class="content container">
+   <div class="content">
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-sm-12">
             {% block content %}
             {% endblock %}
         </div>

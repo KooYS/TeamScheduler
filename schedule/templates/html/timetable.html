@@ -1,0 +1,196 @@
+
+<div id="container" class="timetable" style="margin-top: 30px;margin-bottom: 30px">
+<div class="wrap" style=""><!-- width: 610px; -->
+    <div class="tablehead">
+        <table class="tablehead">
+        <tbody>
+        <tr>
+            <th>
+            </th>
+            <td>
+                월
+            </td>
+            <td>
+                화
+            </td>
+            <td>
+                수
+            </td>
+            <td>
+                목
+            </td>
+            <td>
+                금
+            </td>
+            <td style="display: none;">
+                토
+            </td>
+            <td style="display: none;">
+                일
+            </td>
+            <th>
+            </th>
+        </tr>
+        </tbody>
+        </table>
+    </div>
+    <div class="tablebody">
+        <table class="tablebody" style="margin-top:">
+        <tbody>
+        <tr>
+            <th>
+                <div class="hours">
+                    <div class="hour" style="height: 50px; top: 0px; line-height: 50px;">
+                        0교시
+                    </div>
+                    <div class="hour" style="height: 50px; top: 50px; line-height: 50px;">
+                        1교시
+                    </div>
+                    <div class="hour" style="height: 50px; top: 100px; line-height: 50px;">
+                        2교시
+                    </div>
+                    <div class="hour" style="height: 50px; top: 150px; line-height: 50px;">
+                        3교시
+                    </div>
+                    <div class="hour" style="height: 50px; top: 200px; line-height: 50px;">
+                        4교시
+                    </div>
+                    <div class="hour" style="height: 50px; top: 250px; line-height: 50px;">
+                        5교시
+                    </div>
+                    <div class="hour" style="height: 50px; top: 300px; line-height: 50px;">
+                        6교시
+                    </div>
+                    <div class="hour" style="height: 50px; top: 350px; line-height: 50px;">
+                        7교시
+                    </div>
+                    <div class="hour" style="height: 50px; top: 400px; line-height: 50px;">
+                        8교시
+                    </div>
+                    <div class="hour" style="height: 50px; top: 450px; line-height: 50px;">
+                        9교시
+                    </div>
+                    <div class="hour" style="height: 50px; top: 500px; line-height: 50px;">
+                        10교시
+                    </div>
+                    <div class="hour" style="height: 50px; top: 550px; line-height: 50px;">
+                        11교시
+                    </div>
+                    <div class="hour" style="height: 50px; top: 600px; line-height: 50px;">
+                        12교시
+                    </div>
+                    <div class="hour" style="height: 50px; top: 650px; line-height: 50px;">
+                        13교시
+                    </div>
+                    <div class="hour" style="height: 50px; top: 700px; line-height: 50px;">
+                        14교시
+                    </div>
+                    <div class="hour" style="height: 50px; top: 750px; line-height: 50px;">
+                        15교시
+                    </div>
+                </div>
+            </th>
+            {% for i in range %}
+            {% if i > 4 %}
+            <td  style="display: none;" >
+            {% else %}
+            <td>
+            {% endif %}
+                <div class="cols" style="width: 96px;">
+                </div>
+                <div class="grids" data-index="{{i}}">
+                    <div class="grid">
+                    </div>
+                    <div class="grid">
+                    </div>
+                    <div class="grid">
+                    </div>
+                    <div class="grid">
+                    </div>
+                    <div class="grid">
+                    </div>
+                    <div class="grid">
+                    </div>
+                    <div class="grid">
+                    </div>
+                    <div class="grid">
+                    </div>
+                    <div class="grid">
+                    </div>
+                    <div class="grid">
+                    </div>
+                    <div class="grid">
+                    </div>
+                    <div class="grid">
+                    </div>
+                    <div class="grid">
+                    </div>
+                    <div class="grid">
+                    </div>
+                    <div class="grid">
+                    </div>
+                    <div class="grid">
+                    </div>
+                    
+                </div>
+            </td>
+            {% endfor %}
+            
+            <th>
+                <div class="times">
+                    <div class="time">
+                        오전 8시
+                    </div>
+                    <div class="time">
+                        오전 9시
+                    </div>
+                    <div class="time">
+                        오전 10시
+                    </div>
+                    <div class="time">
+                        오전 11시
+                    </div>
+                    <div class="time">
+                        오후 12시
+                    </div>
+                    <div class="time">
+                        오후 1시
+                    </div>
+                    <div class="time">
+                        오후 2시
+                    </div>
+                    <div class="time">
+                        오후 3시
+                    </div>
+                    <div class="time">
+                        오후 4시
+                    </div>
+                    <div class="time">
+                        오후 5시
+                    </div>
+                    <div class="time">
+                        오후 6시
+                    </div>
+                    <div class="time">
+                        오후 7시
+                    </div>
+                    <div class="time">
+                        오후 8시
+                    </div>
+                    <div class="time">
+                        오후 9시
+                    </div>
+                    <div class="time">
+                        오후 10시
+                    </div>
+                    <div class="time">
+                        오후 11시
+                    </div>
+                </div>
+            </th>
+        </tr>
+        </tbody>
+        </table>
+    </div>
+</div>
+</div>

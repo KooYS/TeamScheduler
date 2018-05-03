@@ -31,7 +31,7 @@ def index(request,kakao_id):
 		text = request.session['form_message']
 		del request.session['form_message']
 
-	return render(request, 'html/index.html', {'users' : user , 'test' : text})
+	return render(request, 'html/index.html', {'users' : user , 'test' : text , 'range' : range(0,7)})
 
 def keyboard(request):
 	return JsonResponse({'type' : 'buttons','buttons' : ['시간표 설정','알고리즘']})
@@ -56,7 +56,7 @@ def message(request):
 	if return_str == "시간표 설정":
 		return JsonResponse({
 			'message': {'text': "링크 클릭",
-			 "message_button": {"label": "시간표 설정", "url": "http://112.171.53.22:1111/"+"id/"+return_json_str['user_key']}
+			 "message_button": {"label": "시간표 설정", "url": "http://10.210.99.99:8000/"+"id/"+return_json_str['user_key']}
 			 },
 			'keyboard': {'type': 'buttons','buttons': ['시간표 설정','알고리즘']}
 		})
