@@ -4,6 +4,9 @@
 
 <script type="text/javascript">
 
+  
+
+
        $(function(){
         var matrix = new Array(16);
         for (var i = 0; i < 16; i++) {
@@ -21,21 +24,46 @@
                     $(e.currentTarget).css({"background-color" : "yellow"});
                     matrix[$(e.currentTarget).index()][$(e.currentTarget).parent().data("index")] = 1;
                 }
-                $("#id_schedule_data").val(matrix.toString().replace(/,/gi,""));
+                $("#id_schedule_data").val(matrix.toString()); //.replace(/,/gi,"")
+                  
+                  html2canvas($(".timetable"), {
+                    onrendered: function (canvas) {
+                  $("#id_timetableurl").val(canvas.toDataURL("image/jpg"));
+                  $('form input[name=width]').val(canvas.width);
+                  $('form input[name=height]').val(canvas.height);
+                  $("#download").attr("href",canvas.toDataURL("image/jpg"));
+
+                  //window.location.href=$("#id_timetableurl").val();
+                  }
+                });
+
             });
 
         });
 </script>
+
+<!-- <form action="" method="post">
+  {% csrf_token %}
+  <table>
+    {{ form.as_table }}
+  </table>
+  <input type="submit">
+</form>
+ -->
 
 	<form method="POST" class="post-form">{% csrf_token %}
 	        <label for="id_teamcode">Teamcode:</label>
         	<input type="text" name="teamcode" maxlength="20" required="" id="id_teamcode">
         	<label for="id_schedule_data" >Schedule data:</label>
             {% include "html/timetable.html" %}
-        	<input type="hidden" name="schedule_data" maxlength="100" required="" id="id_schedule_data">
+          <input type="hidden" name="schedule_data" maxlength="100" required="" id="id_schedule_data">
+          <textarea name="timetableurl" cols="40" rows="10" required="" id="id_timetableurl" style="display:none;"></textarea>
+          <input type="hidden" name="width" value="">
+          <input type="hidden" name="height" value="">
 	        <button type="submit" class="save btn btn-default">Save</button>
 	</form>
 
+    <a id="download" download="myImage.jpg" href="" onclick="">Download to myImage.jpg</a>
     <div class="user" style="margin: 0px;">
         <h2>{{ test }}</h2>
     </div>
