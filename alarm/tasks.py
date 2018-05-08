@@ -1,6 +1,8 @@
-from celery import Celery
-from celery.schedules import crontab
+from __future__ import absolute_import, unicode_literals
 import datetime
+from TeamScheduler.celery import app
+from schedule.models import User
+
 
 dt = datetime.datetime.now()   #dt.hour = 현재 시간의 시
 alarm_time = 1  #사용자가 팀플 알림받고싶어하는 시간(n시간전)
@@ -11,23 +13,15 @@ team_time = int(team_time_code.split(':')[0])
 team_day = int(team_time_code.split(':')[1])
 team_kakao = team_time_code.split(':')[2]
 
-
-app = Celery('tasks',broker='amqp://aaa:bbb@localhost:5672//')
-app.conf.timezone = 'Asia/Seoul'
-
-def setup_period_tasks(sender, **kwargs):
-    if dt.hour == team_time - alarm_time:
-        sender.add_period_task(
-            crontab(hour=team_time, minute=6, day_of_week=team_day),
-            test.s(team_kakao)
-        )
+DB = 'database'
 
 @app.task
-def test(arg):
-    print(arg)
+def task_number_one():
 
-
-
-
-
-
+    #DB SEARCH
+    user = User.objects.all()   #DB전체내용불러오기(user 별로 불러오기)
+                                #user.kakao_id, user.created_data
+    print(user.teamcode)
+    print(user.kakao_id)
+    print(user.created_date)
+    print('========ONE PERIOD==========')
