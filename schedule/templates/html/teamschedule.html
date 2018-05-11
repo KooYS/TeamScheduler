@@ -1,0 +1,58 @@
+{% extends 'html/base.html' %}
+
+{% block content %}
+
+<script type="text/javascript">
+       $(function(){
+        var row = 15;
+        var col = 5;
+        var str = $("#id_schedule_data").val().trim();
+        var matrix = new Array(row);
+        for (var i = 0; i < row; i++) {
+          matrix[i] = new Array(col);
+          for (var j = 0; j<col; j++) {
+              matrix[i][j] = str[(i*col)+j];
+          }
+        }
+        for (var j = 0; j<col; j++) {
+        for (var i = 0; i < row; i++) {
+            if(matrix[i][j] == 0)
+              $(".grid").eq((j * row)+i).css({"background-color" : "write"});
+            else
+              $(".grid").eq((j * row)+i).css({"background-color" : "yellow"});
+          }
+        }
+        //$(".grid").css({"background-color" : "yellow"});
+        html2canvas($(".timetable"), {
+          onrendered: function (canvas) {
+          $("#id_timetableurl").val(canvas.toDataURL("image/jpg"));
+          $('form input[name=width]').val(canvas.width);
+          $('form input[name=height]').val(canvas.height);
+          //$("#download").attr("href",canvas.toDataURL("image/jpg"));
+          $( "#teamscheduleForm" ).submit();
+        }});
+
+});
+</script>
+
+<!-- <form action="" method="post">
+  {% csrf_token %}
+  <table>
+    {{ form.as_table }}
+  </table>
+  <input type="submit">
+</form>
+ -->
+    <!-- <a id="download" download="myImage.jpg" href="" onclick="">Download to myImage.jpg</a> -->
+    <form id="teamscheduleForm" method="POST" class="post-form">{% csrf_token %}
+          <input type="hidden" name="teamcode" maxlength="20" required="" id="id_teamcode" value = "{{ request.session.teamcode }}">
+          <input type="hidden" name="schedule_data" maxlength="100" required="" id="id_schedule_data" value = "{{ request.session.schedule_data }}">
+          <textarea name="timetableurl" cols="40" rows="10" required="" id="id_timetableurl" style="display:none;"></textarea>
+    </form>
+
+  <div style="bottom: -2000px; position: relative;"> {% include "html/timetable.html" %}</div>
+
+<canvas id="canvas"></canvas>
+    
+
+{% endblock %}

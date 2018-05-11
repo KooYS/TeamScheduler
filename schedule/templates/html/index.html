@@ -4,38 +4,41 @@
 
 <script type="text/javascript">
 
-  
-
-
        $(function(){
-        var matrix = new Array(16);
-        for (var i = 0; i < 16; i++) {
-          matrix[i] = new Array(5);
-          for (var j = 0; j<5; j++) {
+        var row = 15;
+        var col = 5;
+        var matrix = new Array(row);
+        for (var i = 0; i < row; i++) {
+          matrix[i] = new Array(col);
+          for (var j = 0; j<col; j++) {
               matrix[i][j] = 0;
           }
         }
             $(".grid").click(function(e) {
+                var selectRow = $(e.currentTarget).index()-1;
+                var selectCol = $(e.currentTarget).parent().data("index");
+
                 if($(e.currentTarget).css("background-color") == "rgb(255, 255, 0)"){
                     $(e.currentTarget).css({"background-color" : "white"});
-                    matrix[$(e.currentTarget).index()][$(e.currentTarget).parent().data("index")] = 0;
+                    matrix[selectRow][selectCol] = 0;
                 }
                 else{
-                    $(e.currentTarget).css({"background-color" : "yellow"});
-                    matrix[$(e.currentTarget).index()][$(e.currentTarget).parent().data("index")] = 1;
+                    $(e.currentTarget).css({"background-color" : "rgb(255, 255, 0)"});
+                    matrix[selectRow][selectCol] = 1;
                 }
+                //console.log(matrix.toString());
                 $("#id_schedule_data").val(matrix.toString()); //.replace(/,/gi,"")
-                  
+
                   html2canvas($(".timetable"), {
                     onrendered: function (canvas) {
                   $("#id_timetableurl").val(canvas.toDataURL("image/jpg"));
                   $('form input[name=width]').val(canvas.width);
                   $('form input[name=height]').val(canvas.height);
                   $("#download").attr("href",canvas.toDataURL("image/jpg"));
-
                   //window.location.href=$("#id_timetableurl").val();
                   }
                 });
+              //e.blur();
 
             });
 
@@ -60,13 +63,12 @@
           <textarea name="timetableurl" cols="40" rows="10" required="" id="id_timetableurl" style="display:none;"></textarea>
           <input type="hidden" name="width" value="">
           <input type="hidden" name="height" value="">
-	        <button type="submit" class="save btn btn-default">Save</button>
+	        <button type="submit" class="save save1" style="background-color: #faab00;
+    color: white;
+    border: 4px solid #faab00;">Save</button>
 	</form>
+   <canvas id="canvas"></canvas>
 
-    <a id="download" download="myImage.jpg" href="" onclick="">Download to myImage.jpg</a>
-    <div class="user" style="margin: 0px;">
-        <h2>{{ test }}</h2>
-    </div>
 
     
 

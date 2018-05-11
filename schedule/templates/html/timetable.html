@@ -1,90 +1,55 @@
-<div id="container" class="timetable" style="margin-top: 30px;margin-bottom: 30px">
-<div class="wrap" style=""><!-- width: 610px; -->
-    <div class="tablehead">
-        <table class="tablehead">
-        <tbody>
-        <tr>
-            <th>
-            </th>
-            <td>
-                월
-            </td>
-            <td>
-                화
-            </td>
-            <td>
-                수
-            </td>
-            <td>
-                목
-            </td>
-            <td>
-                금
-            </td>
-            <td style="display: none;">
-                토
-            </td>
-            <td style="display: none;">
-                일
-            </td>
-            <th>
-            </th>
-        </tr>
-        </tbody>
-        </table>
-    </div>
+<div id="container" class="" style="margin-top: 15px;margin-bottom: 30px">
+<div class="wrap timetable" style=""><!-- width: 610px; -->
     <div class="tablebody">
         <table class="tablebody" style="margin-top:">
         <tbody>
         <tr>
             <th>
                 <div class="hours">
-                    <div class="hour" style="height: 50px; top: 0px; line-height: 50px;">
-                        0교시
-                    </div>
-                    <div class="hour" style="height: 50px; top: 50px; line-height: 50px;">
+                   
+                    <div class="hour" style="height: 30px; top: 30px; line-height: 30px;">
                         1교시
                     </div>
-                    <div class="hour" style="height: 50px; top: 100px; line-height: 50px;">
+                    <div class="hour" style="height: 30px; top: 60px; line-height: 30px;">
                         2교시
                     </div>
-                    <div class="hour" style="height: 50px; top: 150px; line-height: 50px;">
+                    <div class="hour" style="height: 30px; top: 90px; line-height: 30px;">
                         3교시
                     </div>
-                    <div class="hour" style="height: 50px; top: 200px; line-height: 50px;">
+                    <div class="hour" style="height: 30px; top: 120px; line-height: 30px;">
                         4교시
                     </div>
-                    <div class="hour" style="height: 50px; top: 250px; line-height: 50px;">
+                    <div class="hour" style="height: 30px; top: 150px; line-height: 30px;">
                         5교시
                     </div>
-                    <div class="hour" style="height: 50px; top: 300px; line-height: 50px;">
+                    <div class="hour" style="height: 30px; top: 180px; line-height: 30px;">
                         6교시
                     </div>
-                    <div class="hour" style="height: 50px; top: 350px; line-height: 50px;">
+                    <div class="hour" style="height: 30px; top: 210px; line-height: 30px;">
                         7교시
                     </div>
-                    <div class="hour" style="height: 50px; top: 400px; line-height: 50px;">
+                    <div class="hour" style="height: 30px; top: 240px; line-height: 30px;">
                         8교시
                     </div>
-                    <div class="hour" style="height: 50px; top: 450px; line-height: 50px;">
+                    <div class="hour" style="height: 30px; top: 270px; line-height: 30px;">
                         9교시
                     </div>
-                    <div class="hour" style="height: 50px; top: 500px; line-height: 50px;">
+                    <div class="hour" style="height: 30px; top: 300px; line-height: 30px;">
                         10교시
                     </div>
-                    <div class="hour" style="height: 50px; top: 550px; line-height: 50px;">
+                    <div class="hour" style="height: 30px; top: 330px; line-height: 30px;">
                         11교시
                     </div>
-                    <div class="hour" style="height: 50px; top: 600px; line-height: 50px;">
+                    <div class="hour" style="height: 30px; top: 360px; line-height: 30px;">
                         12교시
                     </div>
-                    <div class="hour" style="height: 50px; top: 650px; line-height: 50px;">
+                    <div class="hour" style="height: 30px; top: 390px; line-height: 30px;">
                         13교시
                     </div>
-                    <div class="hour" style="height: 50px; top: 700px; line-height: 50px;">
+                    <div class="hour" style="height: 30px; top: 420px; line-height: 30px;">
                         14교시
                     </div>
-                    <div class="hour" style="height: 50px; top: 750px; line-height: 50px;">
+                    <div class="hour" style="height: 30px; top: 450px; line-height: 30px;">
                         15교시
                     </div>
                 </div>
@@ -95,10 +60,27 @@
             {% else %}
             <td>
             {% endif %}
-                <div class="cols" style="width: 96px;">
+                <div class="cols">
                 </div>
-                <div class="grids" data-index="{{i}}">
-                    <div class="grid">
+                <div class="grids" data-index="{{i}}" readonly="true">
+                    <div class="foo" style="    height: 30px;
+    line-height: 30px;
+    font-size: 15px;
+        text-align: center;
+        background-color: #828282;
+        color: white;
+        ">
+                    {% if i == 0 %}
+                    월
+                    {% elif i == 1 %}
+                    화
+                    {% elif i == 2 %}
+                    수
+                    {% elif i == 3 %}
+                    목
+                    {% elif i == 4 %}
+                    금
+                    {% endif %}
                     </div>
                     <div class="grid">
                     </div>
@@ -137,8 +119,10 @@
             
             <th>
                 <div class="times">
-                    <div class="time">
-                        오전 8시
+                    <div class="foo" style="    height: 30px;
+    line-height: 30px;
+    font-size: 1px;">
+                        
                     </div>
                     <div class="time">
                         오전 9시
@@ -193,5 +177,3 @@
     </div>
 </div>
 </div>
-
-<canvas id="canvas"></canvas>

@@ -1,15 +1,15 @@
 
 /* 작은 기기들 (태블릿, 768px 이상) */
-@media (min-width: 900px) {
+
     .page-header {
-    background-color: #ff9400;
+    background-color: #faab00;
     margin-top: 0;
-    padding: 20px 20px 20px 40px;
+    padding: 10px 20px 10px 20px;
 }
 
 .page-header h1, .page-header h1 a, .page-header h1 a:visited, .page-header h1 a:active {
     color: #ffffff;
-    font-size: 100pt;
+    font-size: 50pt;
     text-decoration: none;
     text-align: center;
 }
@@ -20,7 +20,7 @@
 }
 
 h1, h2, h3, h4 {
-    font-family: 'Lobster', cursive;
+    font-family: 'Sans-Serif';
 }
 
 .date {
@@ -29,15 +29,15 @@ h1, h2, h3, h4 {
 
 .save {
     float: right;
-    font-size: 40px;
+    font-size: 20px;
 }
 
 .post-form textarea, .post-form input {
     width: 100%;
-    height: 80px;
+    height: 40px;
     border: 1px solid #000000;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .top-menu, .top-menu:hover, .top-menu:visited {
@@ -64,9 +64,9 @@ form {
 label {
     display: inline-block;
     max-width: 100%;
-    margin-bottom: 5px;
+    margin-bottom: 0px;
     font-weight: 700;
-    font-size: 40px;
+    font-size: 20px;
 }
 
 .timetable [class^=col-] {
@@ -76,5 +76,3 @@ label {
     border: 1px solid rgba(86,61,124,.2);
 }
 
-
-}

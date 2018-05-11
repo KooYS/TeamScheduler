@@ -12,3 +12,12 @@ class User(models.Model):
 
 	def __str__(self):
 		return self.teamcode
+
+class TeamSchedule(models.Model):
+	teamcode = models.CharField(max_length=20)
+	member_kakao_id = models.TextField(null=True)
+	schedule_data = models.TextField(null=True)
+	alarm_time = models.DateTimeField(default=timezone.now)
+
+	def __str__(self):
+		return self.member_kakao_id
