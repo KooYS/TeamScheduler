@@ -121,7 +121,7 @@ def message(request):
 		})
 	if return_str == "알고리즘":
 		ogger.error("알고리즘")
-		logger.error(equest.session['kakao_id'])
+		logger.error(request.session['kakao_id'])
 		photourl = foo(request.session['kakao_id'])
 		logger.error(photourl)
 		return JsonResponse({ 
