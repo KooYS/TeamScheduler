@@ -16,6 +16,8 @@ from .alarm import find
 
 # Get an instance of a logger
 mainurl = "http://kooys.pythonanywhere.com/"
+#mainurl = "http://112.171.53.22:1111/"
+
 logger = logging.getLogger(__name__)
 def oauth(request):
 	# if request.method == "POST":
@@ -107,6 +109,8 @@ def foo(kakao_id):
 
 @csrf_exempt
 def message(request):
+	mainurl = "http://kooys.pythonanywhere.com/"
+	#mainurl = "http://112.171.53.22:1111/"
 	message = ((request.body).decode('utf-8'))
 	return_json_str = json.loads(message)
 	return_str = return_json_str['content']
@@ -120,12 +124,10 @@ def message(request):
 			'keyboard': {'type': 'buttons','buttons': ['시간표 설정','알고리즘']}
 		})
 	if return_str == "알고리즘":
-		ogger.error("알고리즘")
-		logger.error(request.session['kakao_id'])
+		logger.error(mainurl)
 		photourl = foo(request.session['kakao_id'])
-		logger.error(photourl)
 		return JsonResponse({ 
-			'message': {"text" : "", "photo" : {"url" : mainurl+photourl, "width" : 630,"height" : 720},"message_button": {"label": "크게 보기","url": mainurl+"static/img/"+photourl}},
+			'message': {"text" : "", "photo" : {"url" : ""+mainurl+photourl, "width" : 630,"height" : 720},"message_button": {"label": "크게 보기","url": mainurl+"static/img/"+photourl}},
 			'keyboard': {'type': 'buttons','buttons': ['시간표 설정','알고리즘']}
 		})
 
