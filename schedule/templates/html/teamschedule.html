@@ -7,6 +7,7 @@
         var row = 15;
         var col = 5;
         var str = $("#id_schedule_data").val().trim();
+        var count = $("#id_count").val().trim();
         var matrix = new Array(row);
         for (var i = 0; i < row; i++) {
           matrix[i] = new Array(col);
@@ -19,7 +20,14 @@
             if(matrix[i][j] == 0)
               $(".grid").eq((j * row)+i).css({"background-color" : "write"});
             else
-              $(".grid").eq((j * row)+i).css({"background-color" : "yellow"});
+            {
+              if(matrix[i][j] >= count)
+                $(".grid").eq((j * row)+i).css({"background-color" : "green"});
+              else if(matrix[i][j] >= count * 0.75)
+                $(".grid").eq((j * row)+i).css({"background-color" : "yellow"});
+              else if(matrix[i][j] >= count * 0.50)
+                $(".grid").eq((j * row)+i).css({"background-color" : "red"});
+            }
           }
         }
         //$(".grid").css({"background-color" : "yellow"});
@@ -46,6 +54,7 @@
     <!-- <a id="download" download="myImage.jpg" href="" onclick="">Download to myImage.jpg</a> -->
     <form id="teamscheduleForm" method="POST" class="post-form">{% csrf_token %}
           <input type="hidden" name="teamcode" maxlength="20" required="" id="id_teamcode" value = "{{ request.session.teamcode }}">
+          <input type="hidden" name="count" maxlength="20" required="" id="id_count" value = "{{ request.session.count }}">
           <input type="hidden" name="schedule_data" maxlength="100" required="" id="id_schedule_data" value = "{{ request.session.schedule_data }}">
           <textarea name="timetableurl" cols="40" rows="10" required="" id="id_timetableurl" style="display:none;"></textarea>
     </form>

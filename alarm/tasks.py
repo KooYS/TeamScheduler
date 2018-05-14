@@ -13,15 +13,15 @@ team_time = int(team_time_code.split(':')[0])
 team_day = int(team_time_code.split(':')[1])
 team_kakao = team_time_code.split(':')[2]
 
-DB = 'database'
-
 @app.task
 def task_number_one():
 
-    #DB SEARCH
-    user = User.objects.all()   #DB전체내용불러오기(user 별로 불러오기)
-                                #user.kakao_id, user.created_data
-    print(user.teamcode)
-    print(user.kakao_id)
-    print(user.created_date)
-    print('========ONE PERIOD==========')
+	#DB SEARCH
+	users = User.objects.all()   #DB전체내용불러오기(user 별로 불러오기)
+	#user.kakao_i
+	for user in users:
+		print(user.teamcode)
+		print(user.kakao_id)
+		print(user.created_date)
+	# 
+	print('========ONE PERIOD==========')

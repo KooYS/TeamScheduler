@@ -37,10 +37,10 @@ def teamschedule(request,kakao_id):
 		logger.error(request.POST['schedule_data'])
 		# logger.error(request.POST['teamcode'])
 		# #logger.error(request.POST['timetableurl'])
-		# savePhoto(request.POST['timetableurl'],request.POST['teamcode'])
+		savePhoto(request.POST['timetableurl'],request.POST['teamcode'])
 		# #logger.error(findPhoto(request.POST['teamcode']))
 		# return redirect('index',kakao_id=kakao_id)
-		return redirect('oauth')
+		return redirect('index',kakao_id=kakao_id)
 
 	return render(request, 'html/teamschedule.html',{'kakao_id' : kakao_id,'range' : range(0,7)})
 
@@ -61,28 +61,30 @@ def index(request,kakao_id):
 			# output.close()
 
 			#밑에 전부 주석해제
-			#post.published_date = timezone.now()
-			#logger.error('Something went wrong!')
-			# post.save()
-			# row = 15
-			# col = 5
-			# getTeamcode = User.objects.filter(kakao_id=kakao_id)
-			# users = User.objects.filter(teamcode=getTeamcode.first().teamcode)
-			# result = np.zeros((row, col),dtype=int);
-			# for user in users:
-			# 	text = user.schedule_data.split(',')
-			# 	text = list(map(int, text))
-			# 	text = np.array(text).reshape(row,col)
-			# 	result = np.add(result, text)
-			# result = np.reshape(result,(1 , np.product(result.shape)))
-			# result = np.asarray(result)
-			# result = str(result).replace('[[','')
-			# result = str(result).replace(']]','')
-			# result = str(result).replace(' ','')
-			# result = str(result).replace('\n','')
-			# logger.error(''.join(map(str,result)))
-			# request.session['schedule_data'] = result
-			# request.session['teamcode'] = post.teamcode
+			post.published_date = timezone.now()
+			logger.error('Something went wrong!')
+			post.save()
+			row = 15
+			col = 5
+			getTeamcode = User.objects.filter(kakao_id=kakao_id)
+			users = User.objects.filter(teamcode=getTeamcode.first().teamcode)
+			request.session['count'] = 0
+			result = np.zeros((row, col),dtype=int);
+			for user in users:
+				text = user.schedule_data.split(',')
+				text = list(map(int, text))
+				text = np.array(text).reshape(row,col)
+				result = np.add(result, text)
+				request.session['count'] = request.session['count']+1
+			result = np.reshape(result,(1 , np.product(result.shape)))
+			result = np.asarray(result)
+			result = str(result).replace('[[','')
+			result = str(result).replace(']]','')
+			result = str(result).replace(' ','')
+			result = str(result).replace('\n','')
+			logger.error(''.join(map(str,result)))
+			request.session['schedule_data'] = result
+			request.session['teamcode'] = post.teamcode
 			return redirect('teamschedule',kakao_id=kakao_id)
 
 	#user = User.objects.all()
