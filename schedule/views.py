@@ -146,6 +146,7 @@ def findPhoto(teamcode):
 		returnvalue = preventchange
 		preventchange = uploaded_filename = image_index + uploaded_filename
 		full_filename = os.path.join(settings.MEDIA_ROOT,uploaded_filename)
+		logger.error(full_filename)
 		uploaded_filename = teamcode+".png"
 
 	logger.error(returnvalue)
