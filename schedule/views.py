@@ -135,8 +135,10 @@ def message(request):
 
 def findPhoto(teamcode):
 	uploaded_filename = teamcode+".png"
+	logger.error(uploaded_filename)
 	preventchange = ""
 	full_filename = os.path.join(settings.MEDIA_ROOT,uploaded_filename)
+	logger.error(full_filename)
 	for x in range(0,10):
 		image_index = "%d_" % x
 		if not os.access(full_filename, os.W_OK):
