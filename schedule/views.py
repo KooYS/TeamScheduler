@@ -120,8 +120,9 @@ def message(request):
 			'keyboard': {'type': 'buttons','buttons': ['시간표 설정','알고리즘']}
 		})
 	if return_str == "알고리즘":
+		ogger.error("알고리즘")
+		logger.error(equest.session['kakao_id'])
 		photourl = foo(request.session['kakao_id'])
-		logger.error("알고리즘")
 		logger.error(photourl)
 		return JsonResponse({ 
 			'message': {"text" : "", "photo" : {"url" : mainurl+photourl, "width" : 630,"height" : 720},"message_button": {"label": "크게 보기","url": mainurl+"static/img/"+photourl}},
