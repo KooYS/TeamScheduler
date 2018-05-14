@@ -148,6 +148,7 @@ def findPhoto(teamcode):
 		full_filename = os.path.join(settings.MEDIA_ROOT,uploaded_filename)
 		uploaded_filename = teamcode+".png"
 
+	logger.error(returnvalue)
 	return returnvalue
 
 def savePhoto(image_string,teamcode):
