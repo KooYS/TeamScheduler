@@ -34,9 +34,9 @@
         html2canvas($(".timetable"), {
           onrendered: function (canvas) {
           $("#id_timetableurl").val(canvas.toDataURL("image/jpg"));
+          $("#id_timetable_html").val($(".timetable_container").html());
           $('form input[name=width]').val(canvas.width);
           $('form input[name=height]').val(canvas.height);
-          //$("#download").attr("href",canvas.toDataURL("image/jpg"));
           $( "#teamscheduleForm" ).submit();
         }});
 
@@ -56,10 +56,11 @@
           <input type="hidden" name="teamcode" maxlength="20" required="" id="id_teamcode" value = "{{ request.session.teamcode }}">
           <input type="hidden" name="count" maxlength="20" required="" id="id_count" value = "{{ request.session.count }}">
           <input type="hidden" name="schedule_data" maxlength="100" required="" id="id_schedule_data" value = "{{ request.session.schedule_data }}">
+          <textarea name="timetable_html" required="" id="id_timetable_html" style="display:none;"></textarea>
           <textarea name="timetableurl" cols="40" rows="10" required="" id="id_timetableurl" style="display:none;"></textarea>
     </form>
 
-  <div style="bottom: -2000px; position: relative;"> {% include "html/timetable.html" %}</div>
+  <div style="bottom: -2000px; position: relative;" class="timetable_container"> {% include "html/timetable.html" %}</div>
 
 <canvas id="canvas"></canvas>
     

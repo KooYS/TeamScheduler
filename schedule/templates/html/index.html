@@ -26,7 +26,6 @@
                     $(e.currentTarget).css({"background-color" : "rgb(255, 255, 0)"});
                     matrix[selectRow][selectCol] = 1;
                 }
-                //console.log(matrix.toString());
                 $("#id_schedule_data").val(matrix.toString()); //.replace(/,/gi,"")
 
                   html2canvas($(".timetable"), {
@@ -35,11 +34,8 @@
                   $('form input[name=width]').val(canvas.width);
                   $('form input[name=height]').val(canvas.height);
                   $("#download").attr("href",canvas.toDataURL("image/jpg"));
-                  //window.location.href=$("#id_timetableurl").val();
                   }
                 });
-              //e.blur();
-
             });
 
         });

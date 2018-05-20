@@ -1,0 +1,64 @@
+{% extends 'html/base.html' %}
+
+
+{% block content %}
+
+<script type="text/javascript">
+	$(function(){
+		var list = $("#teamcode").val();
+		console.log(list);
+
+		var row = 15;
+        var col = 5;
+        var matrix = new Array(row);
+        for (var i = 0; i < row; i++) {
+          matrix[i] = new Array(col);
+          for (var j = 0; j<col; j++) {
+              matrix[i][j] = 0;
+          }
+        }
+		$(".grid").click(function(e) {
+                var selectRow = $(e.currentTarget).index()-1;
+                var selectCol = $(e.currentTarget).parent().data("index");
+                console.log(matrix);
+
+                if($(e.currentTarget).css("background-color") == "rgb(255, 255, 0)"){
+
+
+                	if($(e.currentTarget).data('color'))
+                		$(e.currentTarget).css({"background-color" : $(e.currentTarget).data('color')});
+                    else
+                    	$(e.currentTarget).css({"background-color" : "rgba(0, 0, 0, 0)"});
+
+                    matrix[selectRow][selectCol] = 0;
+                }
+                else{
+                	if($(e.currentTarget).css("background-color") != "rgb(255, 255, 0)")
+                		$(e.currentTarget).data('color',$(e.currentTarget).css("background-color"));
+                    $(e.currentTarget).css({"background-color" : "yellow"});
+                    matrix[selectRow][selectCol] = 1;
+                }
+
+                $("#alarm_data").val(matrix.toString()); 
+            });
+	});
+</script>
+
+<form method="POST" class="post-form">{% csrf_token %}
+  <label for="id_teamcode">시간 설정:</label>
+{{html | safe}}
+<label for="id_schedule_data" >몇 분전 알람:</label>
+<select name="time">
+  <option value="15" selected>15분전</option>
+  <option value="30">30분전</option>
+  <option value="60">1시간전</option>
+</select>
+<input type="hidden" id="alarm_data" name="alarm_data">
+  <button type="submit" class="save save1" style="background-color: #faab00;
+    color: white;
+    border: 4px solid #faab00;">Save</button>
+</form>
+
+
+<input type="hidden" id="teamcode" value = "{{teamcode}}">
+{% endblock %}

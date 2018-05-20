@@ -1,0 +1,29 @@
+{% extends 'html/base.html' %}
+
+
+{% block content %}
+
+<script type="text/javascript">
+	$(function(){
+		var list = $("#teamcode_list").val();
+		var kakao_id = $("#kakao_id").val();
+		console.log(kakao_id);
+		list = list.split("/");
+		for (var i = 1; i < list.length; i++) {
+			console.log(list[i]);
+			var url_mask = "{% url 'setofAlarm' teamcode=1234%}".replace(/1234/,list[i]);
+			console.log(url_mask);
+
+			$(".teamcode_list_box").append('<a href="'+url_mask+'">'+list[i]+'</a><br />');
+		}
+	});
+
+
+</script>
+<div class="teamcode_list_box">
+	<input type="hidden" id="teamcode_list" value = "{{teamcodes}}">
+	<input type="hidden" id="kakao_id" value = "{{kakao_id}}">
+	
+
+</div>
+{% endblock %}

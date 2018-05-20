@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 import os
 from celery.schedules import crontab
+from datetime import timedelta
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -23,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '4qkm)@l@yu8^82*a1kmg4#6qx3#hx4n3kx@@gqkxp%%@nd6_fi'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -124,6 +125,8 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'schedule/static/img/') # 'media' is my media folder
 MEDIA_URL = '/media/'
 
+MAIN_URL = "http://112.171.53.22:1111/"
+
 CELERY_BROKER_URL = 'redis://localhost:6379'
 #CELERY_RESULT_BACKEND = 'db+sqlite:///results.sqlite'
 CELERY_RESULT_BACKEND = 'redis://localhost:6379'
@@ -137,6 +140,6 @@ CELERY_IMPORTS = (
 CELERY_BEAT_SCHEDULE = {
     'task-number-one': {
         'task': 'alarm.tasks.task_number_one',
-        'schedule': crontab(minute='*'),
+        'schedule': timedelta(seconds=5),
     }
 }
