@@ -13,7 +13,7 @@ import numpy as np
 import re, os
 import base64
 from django.conf import settings
-from .alarm import find
+
 
 logger = logging.getLogger(__name__)
 
