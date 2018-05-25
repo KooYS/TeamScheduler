@@ -58,7 +58,7 @@ def empty():
 
     # dt.hour에 수업있는 강의실 = 2
     for i in range(len(classdata)):
-        if time.get(dt.hour) == int(classdata[i].split('[')[1].split(',')[0]):
+        if time.get(dt.hour+1) == int(classdata[i].split('[')[1].split(',')[0]):
         # if time.get(11) == int(classdata[i].split('[')[1].split(',')[0]):  # 시간 당 test용도
             #print(classdata[i])
             j = building_2.get(classdata[i].split(' ')[1].split('\'')[1])  # 면

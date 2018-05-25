@@ -2,9 +2,9 @@ from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, get_object_or_404
 from django.shortcuts import redirect
 from django.utils import timezone
-from .models import User
-from .models import TeamInfo
-from .form import PostForm
+from schedule.models import User
+from schedule.models import TeamInfo
+from schedule.form import PostForm
 from django.views.decorators.csrf import csrf_exempt
 import json
 import logging
@@ -13,7 +13,7 @@ import numpy as np
 import re, os
 import base64
 from django.conf import settings
-
+from everytime.find_empty_room import empty
 
 logger = logging.getLogger(__name__)
 
@@ -83,6 +83,7 @@ def setofAlarm(request,teamcode):
 # index
 # 가장 처음에 시간표를 설정하는 컨트롤러. 여기서 teamschedule로 지금까지 저장된 같은 팀코드의 시간표를 자신의 시간표와 합쳐서 보낸다.
 def index(request,kakao_id):
+	print(empty())
 	if request.method == "POST":
 		request.session['kakao_id'] = kakao_id
 		request.session['teamcode'] = request.POST['teamcode']
@@ -222,7 +223,7 @@ def savePhoto(image_string,teamcode):
 	for x in range(0,100):
 		image_index = "%d_" % x
 		if not os.access(full_filename, os.W_OK):
-			break;
+			break
 		uploaded_filename = image_index + uploaded_filename
 		full_filename = os.path.join(settings.MEDIA_ROOT,uploaded_filename)
 		returnvalue = uploaded_filename
