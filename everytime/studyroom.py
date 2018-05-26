@@ -21,7 +21,7 @@ def image_crop(image):
     # area = (600, 306, 1490, 870)
     area = (595, 275, 1560, 870)
     cropped_img = img.crop(area)
-    cropped_img.save('/home/pi/hytae/TeamScheduler/schedule/static/img/studyroom_time.png')
+    cropped_img.save(settings.MEDIA_ROOT+'studyroom_time.png')
 
 
 def parse_studyroom():
@@ -120,8 +120,3 @@ def parse_studyroom():
 #    for i in TimeTable:
 #        StudyRoomData(name=i.name, floor=i.floor, offTime=i.offTime).save()
 
-
-
-
-if __name__ == '__main__':
-    parse_studyroom()

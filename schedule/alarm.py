@@ -11,13 +11,13 @@ def find(auth,teamcode):
 	#photourl = views.findPhoto(teamcode)
 	data = {}
 	headers = {'Authorization': 'Bearer %s' % auth}
-	# arguments = {'template_id':{'9502'},'template_args':json.dumps({'title':teamcode+"팀",'content':"팀플 시간이 얼마 남지 않았습니다.","path":"static/img/"+photourl})}
-	# logger.error(requests.post("https://kapi.kakao.com/v1/user/me", headers=headers).text)
-	#print(arguments)
-	# resp = requests.post("https://kapi.kakao.com/v2/api/talk/memo/send", headers=headers, data=arguments)
-	# print("response status:\n%d" % resp.status_code)
-	# print("response headers:\n%s" % resp.headers)
-	# print("response body:\n%s" % resp.text)
+	arguments = {'template_id':{'9502'},'template_args':json.dumps({'title':teamcode+"팀",'content':"팀플 시간이 얼마 남지 않았습니다.","path":"static/img/"+photourl})}
+	logger.error(requests.post("https://kapi.kakao.com/v1/user/me", headers=headers).text)
+	print(arguments)
+	resp = requests.post("https://kapi.kakao.com/v2/api/talk/memo/send", headers=headers, data=arguments)
+	print("response status:\n%d" % resp.status_code)
+	print("response headers:\n%s" % resp.headers)
+	print("response body:\n%s" % resp.text)
 # def find(auth):
 # 	headers = {'Authorization': 'Bearer %s' % auth}
 # 	arguments = {'template_object' : {

@@ -81,21 +81,21 @@ def empty():
     for i in range(17):
         building_name = building.get(i)
         if i != 16:
-            notice_str = '<' + building_name + '관: '
+            notice_str = '<' + building_name + '관' + '>' + '<br>'
         else:
-            notice_str = '<' + building_name + ': '
+            notice_str = '<' + building_name + '>' + '<br>'
         for j in range(20):
             for k in range(50):
+                #notice_str = notice_str + school_building[i][j][k];
                 if school_building[i][j][k] == 1:
                     if k < 10:
                         notice_str = notice_str + '\t' + str(j) + '0' + str(k) + '호'
                     else:
                         notice_str = notice_str + '\t' + str(j) + str(k) + '호'
 
-        notice_str += '>'
-        notice = notice + notice_str + '\n'
+        notice = notice + notice_str + '<br>'
 
-    print(notice)
+    #print(notice)
     return notice
 
 if __name__ == "__main__":

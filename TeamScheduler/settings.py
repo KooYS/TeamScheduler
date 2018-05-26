@@ -125,7 +125,8 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'schedule/static/img/') # 'media' is my media folder
 MEDIA_URL = '/media/'
 
-MAIN_URL = "http://112.171.53.22:1111/"
+#MAIN_URL = "http://112.171.53.22:1111/"
+MAIN_URL = "http://114.205.97.135:1111/"
 
 CELERY_BROKER_URL = 'redis://localhost:6379'
 #CELERY_RESULT_BACKEND = 'db+sqlite:///results.sqlite'

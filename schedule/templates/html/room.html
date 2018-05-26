@@ -1,0 +1,19 @@
+{% extends 'html/base.html' %}
+
+
+{% block content %}
+<meta name="viewport" content="width=device-width"/>
+<script type="text/javascript">
+	$(function(){
+		
+	});
+</script>
+<label>팀플룸 현황</label>
+<br><br>
+<img src="{{img_path}}" width="100%">
+<br><br>
+<label>빈강의실 현황</label>
+<br><br>
+<p>{{empty_room | safe}}</p>
+<input type="hidden" id="teamcode" value = "{{teamcode}}">
+{% endblock %}

@@ -15,5 +15,6 @@ urlpatterns = [
 	url(r'^id/(?P<kakao_id>.+)$', views.index, name='index'),
 	url(r'^alarm/(?P<kakao_id>.+)/$', views.selectofAlarm, name='selectofAlarm'),
 	url(r'^alarm/(?P<teamcode>.+)$', views.setofAlarm, name='setofAlarm'),
+	url(r'^room/', views.room, name='room'),
 	url(r'^teamschedule/(?P<kakao_id>.+)$', views.teamschedule, name='teamschedule'),
 ]

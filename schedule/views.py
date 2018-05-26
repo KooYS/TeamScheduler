@@ -14,6 +14,7 @@ import re, os
 import base64
 from django.conf import settings
 from everytime.find_empty_room import empty
+from everytime.studyroom import parse_studyroom
 
 logger = logging.getLogger(__name__)
 
@@ -83,7 +84,6 @@ def setofAlarm(request,teamcode):
 # index
 # 가장 처음에 시간표를 설정하는 컨트롤러. 여기서 teamschedule로 지금까지 저장된 같은 팀코드의 시간표를 자신의 시간표와 합쳐서 보낸다.
 def index(request,kakao_id):
-	print(empty())
 	if request.method == "POST":
 		request.session['kakao_id'] = kakao_id
 		request.session['teamcode'] = request.POST['teamcode']
@@ -142,7 +142,7 @@ def index(request,kakao_id):
 # keyboard
 # 카카오톡의 api 중 스마트채팅에서 버튼을 보여주기 위한 컨트롤러.
 def keyboard(request):
-	return JsonResponse({'type' : 'buttons','buttons' : ['시간표 설정','알고리즘','알람설정']})
+	return JsonResponse({'type' : 'buttons','buttons' : ['시간표 설정','알고리즘','알람설정','팀플룸보기']})
 
 # foo(추가적인 작업이 있을 수 도 있어서 임시로 foo라는 이름으로 정함)
 # 카카오톡 아이디에 해당하는 팀 코드의 시간표를 보여주기 위한 함수
@@ -168,7 +168,7 @@ def message(request):
 			'message': {'text': "링크 클릭",
 			 "message_button": {"label": "시간표 설정", "url": settings.MAIN_URL+"id/"+return_json_str['user_key']}
 			 },
-			'keyboard': {'type': 'buttons','buttons': ['시간표 설정','알고리즘','알람설정']}
+			'keyboard': {'type': 'buttons','buttons': ['시간표 설정','알고리즘','알람설정','팀플룸보기']}
 		})
 	if return_str == "알고리즘":
 		photourl = foo(request.session['kakao_id'])
@@ -176,15 +176,32 @@ def message(request):
 		#logger.error(settings.MAIN_URL+photourl)
 		return JsonResponse({ 
 			'message': {"text" : "", "photo" : {"url" : settings.MAIN_URL+"static/img/"+photourl, "width" : 630,"height" : 720},"message_button": {"label": "크게 보기","url": settings.MAIN_URL+"static/img/"+photourl}},
-			'keyboard': {'type': 'buttons','buttons': ['시간표 설정','알고리즘','알람설정']}
+			'keyboard': {'type': 'buttons','buttons': ['시간표 설정','알고리즘','알람설정','팀플룸보기']}
 		})
 	if return_str == "알람설정":
 		return JsonResponse({ 
 			'message': {'text': "설정하기",
 			 "message_button": {"label": "알람설정", "url": settings.MAIN_URL+"alarm/"+return_json_str['user_key']+"/"}
 			 },
-			'keyboard': {'type': 'buttons','buttons': ['시간표 설정','알고리즘','알람설정']}
+			'keyboard': {'type': 'buttons','buttons': ['시간표 설정','알고리즘','알람설정','팀플룸보기']}
 		})
+
+	if return_str == "팀플룸보기":
+		#parse_studyroom()
+		#print(empty())
+		return JsonResponse({ 
+			'message': {'text': "팀플룸보기",
+			 "message_button": {"label": "팀플룸보기", "url": settings.MAIN_URL+"room/"}
+			 },
+			'keyboard': {'type': 'buttons','buttons': ['시간표 설정','알고리즘','알람설정','팀플룸보기']}
+		})
+
+
+# room
+# 팀플하는 시간에 맞춰서 사용할 수 있는 팀플룸의 정보를 보여준다. 학교 팀플룸, 빈강의실에 대한 정보 
+def room(request):
+
+	return render(request, 'html/room.html', {'empty_room' : empty() , 'img_path' : settings.MAIN_URL+'static/img/'+'studyroom_time.png'})
 
 # findPhoto
 # 팀코드의 시간표 사진을 찾는 함수. 로컬루트에 저장된 사진의 이름을 가져온다. 이는 message의 알고리즘 부분에서 받아서 링크를 보내준다.(해당 서버)  
