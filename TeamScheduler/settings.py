@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'schedule',
-    'parsed_data',
+    'everytime',
 ]
 
 MIDDLEWARE = [
@@ -136,10 +136,23 @@ CELERY_TASK_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'Asia/Seoul'
 CELERY_IMPORTS = (
     'alarm.tasks',
+    'everytime.tasks',
+    'everytime.tasks2'
 )
 CELERY_BEAT_SCHEDULE = {
     'task-number-one': {
         'task': 'alarm.tasks.task_number_one',
         'schedule': timedelta(seconds=5),
+    },
+    'task-number-two': {
+        'task': 'everytime.tasks.task_number_two',
+        # 'schedule': crontab(0, 0, month_of_year='*/6'),
+        'schedule': crontab(0, 0, day_of_month='1', month_of_year='3,9')   # 3,9월 1일에 에브리타임 크롤링 진행
+        # 'schedule': crontab(minute='*/30'),
+    },
+    'task_number_three': {
+        'task': 'everytime.tasks2.task_number_three',
+        'schedule': timedelta(minutes=20)
     }
+
 }

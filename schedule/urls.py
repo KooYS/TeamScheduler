@@ -1,7 +1,11 @@
+import os
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "TeamScheduler.settings")
+import django
+django.setup()
 from django.conf.urls import url
 from django.conf import settings
 
-from . import views
+from schedule import views
 
 urlpatterns = [
 	url(r'^keyboard/', views.keyboard, name='keyboard'),
