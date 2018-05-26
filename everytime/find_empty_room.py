@@ -118,7 +118,7 @@ def empty():
 
         if flag == 2:
             notice_str += '>'
-            notice = notice + notice_str + '\n'
+            notice = notice + notice_str + '\n' + '<br>'
         flag = 0
 
 
