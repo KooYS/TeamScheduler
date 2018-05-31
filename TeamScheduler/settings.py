@@ -143,7 +143,7 @@ CELERY_IMPORTS = (
 CELERY_BEAT_SCHEDULE = {
     'task-number-one': {
         'task': 'alarm.tasks.task_number_one',
-        'schedule': timedelta(seconds=5),
+        'schedule': timedelta(seconds=300),
     },
     'task-number-two': {
         'task': 'everytime.tasks.task_number_two',
