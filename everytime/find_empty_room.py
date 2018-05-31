@@ -58,7 +58,7 @@ def empty():
 
     # dt.hour에 수업있는 강의실 = 2
     for i in range(len(classdata)):
-        if time.get(dt.hour+1) == int(classdata[i].split('[')[1].split(',')[0]):
+        if time.get(dt.hour) == int(classdata[i].split('[')[1].split(',')[0]):
         # if time.get(11) == int(classdata[i].split('[')[1].split(',')[0]):  # 시간 당 test용도
             #print(classdata[i])
             j = building_2.get(classdata[i].split(' ')[1].split('\'')[1])  # 면
@@ -73,29 +73,56 @@ def empty():
             # print(j,k,l)
             # print(int(j),int(k),int(l))
             school_building[int(j)][int(k)][int(l)] = 2
+    #dt.hour + 1 에 수업있는 강의실 = 2
+    for i in range(len(classdata)):
+        if time.get(dt.hour+1) == int(classdata[i].split('[')[1].split(',')[0]):
+            # if time.get(11) == int(classdata[i].split('[')[1].split(',')[0]):  # 시간 당 test용도
+            # print(classdata[i])
+            j = building_2.get(classdata[i].split(' ')[1].split('\'')[1])  # 면
+            k = classdata[i].split(' ')[2].split('\'')[1].split('호')[0][0]  # 행
+            if k == 'B':  # 지하는 생각X
+                continue
+            else:
+                l = classdata[i].split(' ')[2].split('\'')[1].split('호')[0][1:]  # 열
+                if '-' in l:
+                    # print(l)
+                    l = l.split('-')[0]
+            # print(j,k,l)
+            # print(int(j),int(k),int(l))
+            school_building[int(j)][int(k)][int(l)] = 2
+
+
 
     # for i in range(17):
     #     for j in range(20):
     #         print(school_building[i][j])
 
     for i in range(17):
-        building_name = building.get(i)
-        if i != 16:
-            notice_str = '<' + building_name + '관' + '>' + '<br>'
-        else:
-            notice_str = '<' + building_name + '>' + '<br>'
+        notice_str = ''
+        flag = 1
         for j in range(20):
             for k in range(50):
-                #notice_str = notice_str + school_building[i][j][k];
-                if school_building[i][j][k] == 1:
+                if school_building[i][j][k] == 1:     # school_building[i][j][k] = {0: 강의실 X, 1: 빈강의실, 2: 수업}
+                    if flag == 1:
+                        building_name = building.get(i)
+                        if i != 16:
+                            notice_str = '<' + building_name + '관: '
+                        else:
+                            notice_str = '<' + building_name + ': '
+                        flag = 2
+
                     if k < 10:
                         notice_str = notice_str + '\t' + str(j) + '0' + str(k) + '호'
                     else:
                         notice_str = notice_str + '\t' + str(j) + str(k) + '호'
 
-        notice = notice + notice_str + '<br>'
+        if flag == 2:
+            notice_str += '>'
+            notice = notice + notice_str + '\n' + '<br>'
+        flag = 0
 
-    #print(notice)
+
+    print(notice)
     return notice
 
 if __name__ == "__main__":
