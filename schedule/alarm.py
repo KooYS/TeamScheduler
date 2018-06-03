@@ -8,7 +8,7 @@ from django.conf import settings
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
 def find(auth,teamcode):
-	#photourl = views.findPhoto(teamcode)
+	photourl = views.findPhoto(teamcode)
 	data = {}
 	headers = {'Authorization': 'Bearer %s' % auth}
 	arguments = {'template_id':{'9502'},'template_args':json.dumps({'title':teamcode+"팀",'content':"팀플 시간이 얼마 남지 않았습니다.","path":"static/img/"+photourl})}
