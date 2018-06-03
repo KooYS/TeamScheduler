@@ -38,7 +38,7 @@ def oauth(request):
 		return HttpResponse('<script type="text/javascript">window.close(); window.parent.location.href = "/";</script>')
 
 	state = request.session['teamcode']+':'+request.session['kakao_id']
-	return render(request,"html/oauth.html" , {'redirect_uri' : settings.MAIN_URL+"oauth", 'state' : state})
+	return render(request,"html/oauth.html" , {'state' : state})
 
 # success 
 # 작업이 끝날때 완료했다는 페이지를 보여주는 컨트롤러
