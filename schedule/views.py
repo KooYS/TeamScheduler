@@ -29,7 +29,7 @@ def oauth(request):
 	if request.method == "GET" and 'code' in request.GET:
 		url = "https://kauth.kakao.com/oauth/token"
 		payload = {"grant_type" : "authorization_code", "client_id" : "21755e7ccf4a9d96914cdecf96701018" , "redirect_uri" : settings.MAIN_URL+"oauth" , "code" : str(request.GET['code'])}
-		response = requests.post(url,data=payload)
+		response = requests.post(url,data=payload,  verify=False)
 		access_token = json.loads(((response.text).encode('utf-8')))['access_token']
 		userinfo = request.GET['state'].split(':')
 		user = User.objects.get(kakao_id=userinfo[1],teamcode=userinfo[0])
