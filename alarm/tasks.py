@@ -12,10 +12,6 @@ import time
 @app.task
 def task_number_one():
     #print('TESTSTESTSETSTESTSETSET')
-
-    find(user.alarm_token,info.teamcode)
-	return
-	
 	row = 15
 	col = 5
 	#DB SEARCH
@@ -24,12 +20,16 @@ def task_number_one():
 		users = User.objects.filter(teamcode=info.teamcode)
 		for user in users:
 			if user.alarm_token:
+				#임시 테스트
+				find(user.alarm_token,info.teamcode)
+				continue
+				
 				alarm_data = info.alarm_data.split(',')
 				alarm_data = list(map(int, alarm_data))
 				alarm_data = np.array(alarm_data).reshape(row,col)
 				alarm_data = alarm_data.T
 				now = datetime.datetime.now()
-				#임시 테스츠
+				
 				if now.weekday() > 4:
 					continue
 
